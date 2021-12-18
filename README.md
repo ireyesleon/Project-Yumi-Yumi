@@ -6,7 +6,9 @@ Hi team, this is my mockup for the search page, in the logo I use 3 different ic
 
 ## Subject to improve:
 
--Im not sure about the colors but we can check it later.
+-I'm not sure about the colors but we can check it later.
+-I added 2 buttons to mark the recipe to favorite and the youtube link. Any comments?
+-I'm not sure either about the add and search for the recipe, we can discuss it later to improve and to start with the functionality.
 
 ## User Story
 
