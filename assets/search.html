@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Search Recipie</title>
+  </head>
+
+  <body>
+    <ion-content>
+      <ion-toolbar color="secondary">
+        <ion-buttons slot="secondary">
+          <ion-button>
+            <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="search"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="star"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title
+          ><ion-icon name="beer-outline"></ion-icon
+          ><ion-icon name="fast-food-outline"></ion-icon>
+          <ion-icon name="pizza-outline"></ion-icon> Yumi Yumi</ion-title
+        >
+      </ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <ion-item>
+              <ion-label position="floating">Enter Ingredient</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+
+            <ion-button shape="round" color="primary">Add</ion-button>
+            <ion-button shape="round" color="tertiary">Search</ion-button>
+
+            <ion-list>
+              <ion-item>
+                <ion-label>Pepperoni</ion-label>
+                <ion-checkbox
+                  slot="end"
+                  value="pepperoni"
+                  checked
+                ></ion-checkbox>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Sausage</ion-label>
+                <ion-checkbox slot="end" value="sausage"></ion-checkbox>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Mushrooms</ion-label>
+                <ion-checkbox slot="end" value="mushrooms"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-row>
+              <ion-col class="ion-margin-start" size="4" offset="2">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>Card Title </ion-card-title>
+                    <img src="./img/enchiladas.jpeg" />
+                  </ion-card-header>
+                  <ion-card-content>
+                    Keep close to Nature's heart... and break clear away, once
+                    in awhile, and climb a mountain or spend a week in the
+                    woods. Wash your spirit clean.
+                    <ion-button fill="outline" slot="end">View More</ion-button>
+                    <ion-button>
+                      <ion-icon name="bookmark-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button>
+                      <ion-icon name="logo-youtube"></ion-icon>
+                    </ion-button>
+                  </ion-card-content> </ion-card
+              ></ion-col>
+              <ion-col class="ion-margin-start" size="4" offset="2">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>Card Title </ion-card-title>
+                    <img src="./img/enchiladas.jpeg" />
+                  </ion-card-header>
+                  <ion-card-content>
+                    Keep close to Nature's heart... and break clear away, once
+                    in awhile, and climb a mountain or spend a week in the
+                    woods. Wash your spirit clean.
+                    <ion-button fill="outline" slot="end">View More</ion-button>
+                    <ion-button>
+                      <ion-icon name="bookmark-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button>
+                      <ion-icon name="logo-youtube"></ion-icon>
+                    </ion-button>
+                  </ion-card-content> </ion-card
+              ></ion-col>
+
+              <ion-col class="ion-margin-start" size="4" offset="2">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>Card Title </ion-card-title>
+                    <img src="./img/enchiladas.jpeg" />
+                  </ion-card-header>
+                  <ion-card-content>
+                    Keep close to Nature's heart... and break clear away, once
+                    in awhile, and climb a mountain or spend a week in the
+                    woods. Wash your spirit clean.
+                    <ion-button fill="outline" slot="end">View More</ion-button>
+                    <ion-button>
+                      <ion-icon name="bookmark-outline"></ion-icon>
+                    </ion-button>
+                    <ion-button>
+                      <ion-icon name="logo-youtube"></ion-icon>
+                    </ion-button>
+                  </ion-card-content> </ion-card
+              ></ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
