@@ -1,4 +1,4 @@
-const API_KEY = "46656199f58d44a782efa84f1429818e";
+const API_KEY = "e3a714fa8f204281ac78fad6339b01ce";
 const LIST_RESULTS = 10;
 const ingredientListArray = [];
 const addIngredientButton = document.getElementById("addIngredient");
@@ -38,9 +38,8 @@ function SearchRecipe(ingredient) {
   const URL_RECIPE = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${ingredient}&number=${LIST_RESULTS}`;
   return fetch(URL_RECIPE).then((data) => data.json());
 }
-function SearchRecipeInformation(id, recipeTitle) {
-  console.log(id);
-  console.log(recipeTitle);
+function SearchRecipeInformation(idName) {
+  console.log(idName);
 }
 function CreateCardRecipe() {
   const addCards = document.getElementById("addCards");
@@ -48,16 +47,17 @@ function CreateCardRecipe() {
     SearchRecipe(ingredientListArray.toString()).then((data) => {
       for (let i = 0; i < data.length; i++) {
         const createCard = document.createElement("div");
+        const idName = `${data[i].id}-${data[i].title}`;
         createCard.innerHTML = `
-        <ion-col class="ion-margin-start"  >
-            <ion-card>
+        <ion-col class="ion-margin-start \"  >
+            <ion-card class="img-card">
             <ion-card-header>
                 <ion-card-title>${data[i].title}</ion-card-title>
                 <img class="img-card" src="${data[i].image}" />
             </ion-card-header>
             <ion-card-content>
                 <p id="${data[i].id}CardContent">Extra Ingredients</p>
-                <ion-button fill="outline" slot="end"  onclick="SearchRecipeInformation(${data[i].id}, ${data[i].title})">
+                <ion-button fill="outline" slot="end"  onclick="SearchRecipeInformation(${data[i].id})">
                 View More
                 </ion-button>
                 <ion-button id="addFavorite-${data[i].id}" class="favoriteButton">
