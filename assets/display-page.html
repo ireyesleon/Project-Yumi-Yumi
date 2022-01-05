@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Display</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="./css/style-display.css">
+</head>
+<body>
+    <ion-app>
+        <ion-header>
+          <ion-toolbar color="secondary" class="ion-text-center">
+            <ion-title>Yumi Yumi App</ion-title>
+          </ion-toolbar>
+        </ion-header>
+      
+        <ion-content color="primary" class="ion-padding">
+            <ion-grid>
+                <ion-row id="photo-and-recipe">
+                  <ion-col id="photo-container" size="12" size-sm>
+                    <div>
+                        <img src="./images/image-1.jpeg" alt="ceviche">
+                        <figcaption>Ceviche</figcaption>
+                    </div>
+                  </ion-col>
+                  <ion-col id="recipe-container" size="9" class="ion-text-justify">
+                    <div>Ceviche</div>
+                    <div id="recipe-text">Ingredients:
+                        <br>
+                        1 ½ pounds very fresh and high quality fish filets corvina, halibut, escolar, hamachi, mahi-mahibr
+                        <br>
+                        1 red onion thinly sliced
+                        <br>
+                        1 cup freshly squeezed lime juice from about 35- 40 key limes, or 15-20 Peruvian limes
+                        <br>
+                        1-2 habanero peppers cut in half, without seeds and deveined
+                        <br>
+                        2-3 sprigs of fresh cilantro
+                        <br>
+                        Salt to taste
+                        <br>
+                        Finely chopped cilantro to taste
+                        <br>
+                        <br>
+                        To serve:
+                        Lettuce leaves
+                        Cancha, tostado or chulpe corn nuts
+                        Fresh boiled corn
+                        Sweet potato: thinly fried or baked chips or boiled thick slices
+                        Chifles or fried green plantain chips
+                        Diced or sliced hot peppers - optional
+                        Olive oil - optional
+                        Lime slices
+                        Instructions
+                        <br>
+                        Cut the fish into small cubes, place in a glass bowl and cover with cold water and 1 tablespoon of salt, cover and refrigerate while you prepare the onions and juice the limes.
+                        Rub the thin onion slices with 1/2 tablespoon of salt and rinse in cold water.
+                        Rinse the fish to remove the salt
+                        Place the cubes of fish, half of the sliced onions, and hot peppers in a glass bowl and pour the lime juice over the ingredients. Sprinkle with a little bit of salt. To minimize the acidity of the limes you can put a few ice cubes in the mix.
+                        Cover and refrigerate for about 5-15 minutes.
+                        Remove the cilantro sprigs and the hot peppers from the mix. Taste the fish ceviche and add additional salt if needed.
+                        Use a spoon to place the ceviche in each serving bowl, add additional sliced onions to each bowl, sprinkle with finely chopped cilantro, and diced or sliced hot peppers.
+                        Serve immediately with your choice of sides and garnishes.
+                    </div>
+                  </ion-col>
+                </ion-row>
+                    <ion-row>
+                    <ion-col id="related-content" size="12" size-sm class="ion-text-center">
+                        Related content
+                    </ion-col>
+                    </ion-row>
+                    <ion-row>
+                    <ion-col id="video-container" size="12" size-sm class="ion-text-center">
+                        <iframe width="280" height="158" src="https://www.youtube.com/embed/C9aiGLIry7g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </ion-col>
+                    <ion-col id="books-container" size="12" size-sm class="ion-text-center">
+                      
+                    </ion-col>
+                </ion-row>
+              </ion-grid>
+        </ion-content>
+      
+        <ion-footer>
+          <ion-toolbar color="secondary" class="ion-text-center">
+            <ion-button color="light">Go back</ion-button>
+          </ion-toolbar>
+        </ion-footer>
+      </ion-app>
+      <script src="./js/script-display.js"></script>
+</body>
+</html>
