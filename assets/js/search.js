@@ -3,6 +3,7 @@ const LIST_RESULTS = 10;
 const ingredientListArray = [];
 const addIngredientButton = document.getElementById("addIngredient");
 const searchRecipeButton = document.getElementById("searchRecipe");
+const viewMoreButton = document.getElementsByClassName("viewMore");
 
 function AddIngredient() {
   const ingredientList = document.getElementById("ingredientList");
@@ -29,10 +30,16 @@ function AddIngredient() {
     }
   }
 }
-
+function DetailRecipe(id) {
+  const URL_RECIPE_ID = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=false`;
+  return fetch(URL_RECIPE_ID).then((data) => data.json());
+}
 function SearchRecipe(ingredient) {
   const URL_RECIPE = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${ingredient}&number=${LIST_RESULTS}`;
   return fetch(URL_RECIPE).then((data) => data.json());
+}
+function SearchRecipeInformation(id) {
+  console.log(id);
 }
 function CreateCardRecipe() {
   const addCards = document.getElementById("addCards");
@@ -40,26 +47,28 @@ function CreateCardRecipe() {
     SearchRecipe(ingredientListArray.toString()).then((data) => {
       for (let i = 0; i < data.length; i++) {
         const createCard = document.createElement("div");
-        createCard.innerHTML = `<ion-col class="ion-margin-start"  >
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>${data[i].title}</ion-card-title>
-          <img class="img-card" src="${data[i].image}" />
-        </ion-card-header>
-        <ion-card-content>
-          <ion-button fill="outline" slot="end">
-            View More
-          </ion-button>
-          <ion-button id="addFavorite-${data[i].id}" class="favoriteButton">
-            <ion-icon name="bookmark-outline"></ion-icon>
-          </ion-button>
-          <ion-button id="searchYoutube-${data[i].title}" class="youtubeRecipe">
-            <ion-icon name="logo-youtube"></ion-icon>
-          </ion-button>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>`;
-        addCards.appendChild(createCard);
+        DetailRecipe(data[i].id).then((recipe) => {
+          createCard.innerHTML = `<ion-col class="ion-margin-start"  >
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>${data[i].title}</ion-card-title>
+                <img class="img-card" src="${data[i].image}" />
+              </ion-card-header>
+              <ion-card-content>
+                <ion-button fill="outline" slot="end"  onclick="SearchRecipeInformation(${data[i].id})">
+                  View More
+                </ion-button>
+                <ion-button id="addFavorite-${data[i].id}" class="favoriteButton">
+                  <ion-icon name="bookmark-outline"></ion-icon>
+                </ion-button>
+                <ion-button id="searchYoutube-${data[i].title}" class="youtubeRecipe">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>`;
+          addCards.appendChild(createCard);
+        });
       }
     });
   } else {
