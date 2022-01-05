@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Search Recipie</title>
+  </head>
+
+  <body>
+    <ion-content color="primary">
+      <ion-toolbar color="secondary">
+        <ion-buttons slot="secondary">
+          <ion-button>
+            <ion-icon slot="icon-only" name="search"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="star"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title
+          ><ion-icon name="beer-outline"></ion-icon
+          ><ion-icon name="fast-food-outline"></ion-icon>
+          <ion-icon name="pizza-outline"></ion-icon> Yumi Yumi</ion-title
+        >
+      </ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="" size="3">
+            <ion-item>
+              <ion-label position="floating">Enter Ingredient</ion-label>
+              <ion-input id="ingredient"></ion-input>
+            </ion-item>
+
+            <ion-button id="addIngredient" shape="round" color="tertiary"
+              >Add</ion-button
+            >
+            <ion-button id="searchRecipe" shape="round" color="tertiary"
+              >Search</ion-button
+            >
+
+            <ion-list id="ingredientList" class="list"> </ion-list>
+          </ion-col>
+          <ion-col>
+            <ion-row id="addCards"> </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="./js/search.js"></script>
+  </body>
+</html>
