@@ -1,6 +1,6 @@
 var API_KEY = "AIzaSyA99Z54YAvxe1t9L8R0vWnJDNh05hRYElI";
 var recBooks = document.querySelector("#books-container");
-
+var videoContainer = document.getElementById("video-container");
 
 //Fuction to get video info
 function getYoutube() {
@@ -18,9 +18,10 @@ fetch(queryUrl)
 getYoutube();
 
 //Function to get book info
-function getBook() {
+function getBook(userInput) {
+userInput = "ceviche"
 recBooks.innerHTML = "";
-var queryUrl = `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${API_KEY}`;
+var queryUrl = `https://www.googleapis.com/books/v1/volumes?q=${userInput}&key=${API_KEY}`;
 fetch(queryUrl)
         .then(function (response) {
          console.log(response.status);
