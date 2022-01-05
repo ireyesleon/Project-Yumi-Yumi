@@ -22,4 +22,4 @@ SO THAT I can search for a recipie to cook.
 
 The following image shows the search appearance :
 
-![The search page is jut a mockup, without functionality.](./assets/img/Search.png)
+![The search page is jut a mockup, without functionality.](./assets/images/Search.png)

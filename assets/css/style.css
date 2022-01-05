@@ -8,6 +8,9 @@
   --ion-color-favorite-contrast-rgb: 255, 255, 255;
   --ion-color-favorite-shade: #5ca56c;
   --ion-color-favorite-tint: #78c288;
+  --ion-color-secondary: #41ac44;
+  --ion-color-tertiary: #9cdd8f;
+  --ion-color-primary: #e0f3ce;
 }
 
 body {
@@ -74,4 +77,7 @@ body {
 
 .img-card {
   max-width: 200px;
+}
+.list {
+  background-color: #e0f3ce;
 }
