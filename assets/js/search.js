@@ -1,4 +1,4 @@
-const API_KEY = "cbc7633ff8d642669e1968185035da24";
+const API_KEY = "836d5ae3b9f844bdb1db505fe0936891";
 const LIST_RESULTS = 3;
 let ingredientListArray = [];
 const clearRecipeButton = document.getElementById("clearRecipe");
