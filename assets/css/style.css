@@ -79,10 +79,15 @@ body {
 }
 
 .img-card {
-  max-width: 250px;
+  max-width: 430px;
+  color: black;
+  padding: 20px;
   background-color: #f4d03f;
   background-image: linear-gradient(132deg, #f4d03f 0%, #16a085 100%);
 }
 .list {
   background-color: #e0f3ce;
+}
+img {
+  padding: 20px;
 }
