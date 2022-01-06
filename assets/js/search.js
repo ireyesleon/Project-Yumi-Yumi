@@ -1,6 +1,7 @@
-const API_KEY = "48aeec184b014961a1ee143ca16912b2";
+const API_KEY = "cbc7633ff8d642669e1968185035da24";
 const LIST_RESULTS = 3;
-const ingredientListArray = [];
+let ingredientListArray = [];
+const clearRecipeButton = document.getElementById("clearRecipe");
 const addIngredientButton = document.getElementById("addIngredient");
 const searchRecipeButton = document.getElementById("searchRecipe");
 const viewMoreButton = document.getElementsByClassName("viewMore");
@@ -30,6 +31,11 @@ function AddIngredient() {
     }
   }
 }
+function ClearRecipe() {
+  ingredientListArray = [];
+  document.getElementById("ingredientList").innerHTML = "";
+  document.getElementById("addCards").innerHTML = "";
+}
 function DetailRecipe(id) {
   const URL_RECIPE_ID = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=false`;
   return fetch(URL_RECIPE_ID).then((data) => data.json());
@@ -39,16 +45,16 @@ function SearchRecipe(ingredient) {
   return fetch(URL_RECIPE).then((data) => data.json());
 }
 function SearchRecipeInformation(idName) {
-  localStorage.setItem(`recipeID`,idName);
-
+  localStorage.setItem(`recipeID`, idName);
 }
 function CreateCardRecipe() {
   const addCards = document.getElementById("addCards");
   if (ingredientListArray.length > 0) {
-    SearchRecipe(ingredientListArray.toString()).then((data) => {
-      for (let i = 0; i < data.length; i++) {
-        const createCard = document.createElement("div");
-        createCard.innerHTML = `
+    SearchRecipe(ingredientListArray.toString())
+      .then((data) => {
+        for (let i = 0; i < data.length; i++) {
+          const createCard = document.createElement("div");
+          createCard.innerHTML = `
         <ion-col size="3" class="ion-margin-start \"  >
             <ion-card class="img-card">
             <ion-card-header>
@@ -64,38 +70,52 @@ function CreateCardRecipe() {
                 <ion-button fill="outline" slot="end"  onclick="SearchRecipeInformation(${data[i].id})">
                 <a href="display-page.html">View More
                 </ion-button>
-                <ion-button id="addFavorite-${data[i].id}" class="favoriteButton">
-                <ion-icon name="bookmark-outline"></ion-icon>
-                </ion-button>
-            </ion-card-content>
+               </ion-card-content>
             </ion-card>
         </ion-col>`;
-        DetailRecipe(data[i].id).then((recipe) => {
-          document.getElementById(
-            `${data[i].id}TimePreparation`
-          ).innerHTML = `Ready in ${recipe.readyInMinutes} Minutes <ion-icon name="timer-outline"></ion-icon>
+          DetailRecipe(data[i].id)
+            .then((recipe) => {
+              document.getElementById(
+                `${data[i].id}TimePreparation`
+              ).innerHTML = `Ready in ${recipe.readyInMinutes} Minutes <ion-icon name="timer-outline"></ion-icon>
           `;
-          document.getElementById(
-            `${data[i].id}Serving`
-          ).innerHTML = `Serving for ${recipe.servings} <ion-icon name="people-outline"></ion-icon>`;
-          document.getElementById(
-            `${data[i].id}Summary`
-          ).innerHTML = `${recipe.summary.slice(0, 450)}...`;
-          for (let j = 0; j < recipe.extendedIngredients.length; j++) {
-            const cardContent = document.getElementById(
-              `${data[i].id}CardContent`
-            );
-            const extraIngredients = document.createElement("div");
-            extraIngredients.innerHTML = `
+              document.getElementById(
+                `${data[i].id}Serving`
+              ).innerHTML = `Serving for ${recipe.servings} <ion-icon name="people-outline"></ion-icon>`;
+              document.getElementById(
+                `${data[i].id}Summary`
+              ).innerHTML = `${recipe.summary.slice(0, 450)}...`;
+              for (let j = 0; j < recipe.extendedIngredients.length; j++) {
+                const cardContent = document.getElementById(
+                  `${data[i].id}CardContent`
+                );
+                const extraIngredients = document.createElement("div");
+                extraIngredients.innerHTML = `
               <li>${recipe.extendedIngredients[j].name}</li>
             `;
-            cardContent.appendChild(extraIngredients);
-          }
-        });
+                cardContent.appendChild(extraIngredients);
+              }
+            })
+            .catch((error) => {
+              const alert = document.createElement("ion-alert");
+              alert.header = "Error";
+              alert.message = error;
+              alert.buttons = ["OK"];
+              document.body.appendChild(alert);
+              return alert.present();
+            });
 
-        addCards.appendChild(createCard);
-      }
-    });
+          addCards.appendChild(createCard);
+        }
+      })
+      .catch((error) => {
+        const alert = document.createElement("ion-alert");
+        alert.header = "Error";
+        alert.message = error;
+        alert.buttons = ["OK"];
+        document.body.appendChild(alert);
+        return alert.present();
+      });
   } else {
     const alert = document.createElement("ion-alert");
     alert.header = "Error";
@@ -105,5 +125,6 @@ function CreateCardRecipe() {
     return alert.present();
   }
 }
+clearRecipeButton.addEventListener("click", ClearRecipe);
 addIngredientButton.addEventListener("click", AddIngredient);
 searchRecipeButton.addEventListener("click", CreateCardRecipe);
