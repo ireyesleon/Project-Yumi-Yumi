@@ -22,7 +22,7 @@ function getYoutube(recipeKeywords) {
 
 //Function to display local storage info
 function getRecipe() {
-  var id = 640629;
+  var id = JSON.parse(localStorage.getItem("recipeID"));
   //JSON.parse(localStorage.getItem("id"))
   var URL_RECIPE_ID = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY_SPOON}&includeNutrition=false&instructionsRequired=true`;
   console.log(URL_RECIPE_ID)

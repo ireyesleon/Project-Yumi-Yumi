@@ -1,5 +1,5 @@
 const API_KEY = "48aeec184b014961a1ee143ca16912b2";
-const LIST_RESULTS = 1;
+const LIST_RESULTS = 3;
 const ingredientListArray = [];
 const addIngredientButton = document.getElementById("addIngredient");
 const searchRecipeButton = document.getElementById("searchRecipe");
@@ -39,7 +39,8 @@ function SearchRecipe(ingredient) {
   return fetch(URL_RECIPE).then((data) => data.json());
 }
 function SearchRecipeInformation(idName) {
-  console.log(idName);
+  localStorage.setItem(`recipeID`,idName);
+
 }
 function CreateCardRecipe() {
   const addCards = document.getElementById("addCards");
@@ -48,7 +49,7 @@ function CreateCardRecipe() {
       for (let i = 0; i < data.length; i++) {
         const createCard = document.createElement("div");
         createCard.innerHTML = `
-        <ion-col class="ion-margin-start \"  >
+        <ion-col size="3" class="ion-margin-start \"  >
             <ion-card class="img-card">
             <ion-card-header>
                 <ion-card-title>${data[i].title}</ion-card-title>
@@ -61,7 +62,7 @@ function CreateCardRecipe() {
                 <ul id="${data[i].id}CardContent"></ul>
                 <p id="${data[i].id}Summary"></p>
                 <ion-button fill="outline" slot="end"  onclick="SearchRecipeInformation(${data[i].id})">
-                View More
+                <a href="display-page.html">View More
                 </ion-button>
                 <ion-button id="addFavorite-${data[i].id}" class="favoriteButton">
                 <ion-icon name="bookmark-outline"></ion-icon>
