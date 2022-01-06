@@ -33,7 +33,7 @@ body {
 
 .hero-text {
   text-align: center;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -59,14 +59,26 @@ body {
   display: inline-block;
   flex: 0 0 auto;
   width: 58.3333%;
-  margin-top: 8rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   padding: 50px;
   border-radius: 15px;
   background-color: #f4d03f;
   background-image: linear-gradient(132deg, #f4d03f 0%, #16a085 100%);
-
   opacity: 0.98;
+}
+
+h1 {
+  font-size: 4vh;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2vh;
+}
+
+#continue {
+  text-align: center;
 }
 
 .ion-color-favorite {

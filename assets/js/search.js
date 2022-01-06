@@ -55,7 +55,7 @@ function CreateCardRecipe() {
         for (let i = 0; i < data.length; i++) {
           const createCard = document.createElement("div");
           createCard.innerHTML = `
-        <ion-col size="3" class="ion-margin-start \"  >
+        <ion-col size="12" size-sm class="ion-margin-start \"  >
             <ion-card class="img-card">
             <ion-card-header>
                 <ion-card-title>${data[i].title}</ion-card-title>
