@@ -1,5 +1,5 @@
-const API_KEY = "e3a714fa8f204281ac78fad6339b01ce";
-const LIST_RESULTS = 10;
+const API_KEY = "48aeec184b014961a1ee143ca16912b2";
+const LIST_RESULTS = 1;
 const ingredientListArray = [];
 const addIngredientButton = document.getElementById("addIngredient");
 const searchRecipeButton = document.getElementById("searchRecipe");
@@ -47,38 +47,47 @@ function CreateCardRecipe() {
     SearchRecipe(ingredientListArray.toString()).then((data) => {
       for (let i = 0; i < data.length; i++) {
         const createCard = document.createElement("div");
-        const idName = `${data[i].id}-${data[i].title}`;
         createCard.innerHTML = `
         <ion-col class="ion-margin-start \"  >
             <ion-card class="img-card">
             <ion-card-header>
                 <ion-card-title>${data[i].title}</ion-card-title>
-                <img class="img-card" src="${data[i].image}" />
+                <img  src="${data[i].image}" />
             </ion-card-header>
             <ion-card-content>
-                <p id="${data[i].id}CardContent">Extra Ingredients</p>
+                <p style="font-size: 15px" id="${data[i].id}TimePreparation"></p>
+                <p style="font-size: 15px" id="${data[i].id}Serving"></p>
+                <p>Ingredients:</p>
+                <ul id="${data[i].id}CardContent"></ul>
+                <p id="${data[i].id}Summary"></p>
                 <ion-button fill="outline" slot="end"  onclick="SearchRecipeInformation(${data[i].id})">
                 View More
                 </ion-button>
                 <ion-button id="addFavorite-${data[i].id}" class="favoriteButton">
                 <ion-icon name="bookmark-outline"></ion-icon>
                 </ion-button>
-                <ion-button id="searchYoutube-${data[i].title}" class="youtubeRecipe">
-                <ion-icon name="logo-youtube"></ion-icon>
-                </ion-button>
             </ion-card-content>
             </ion-card>
         </ion-col>`;
         DetailRecipe(data[i].id).then((recipe) => {
+          document.getElementById(
+            `${data[i].id}TimePreparation`
+          ).innerHTML = `Ready in ${recipe.readyInMinutes} Minutes <ion-icon name="timer-outline"></ion-icon>
+          `;
+          document.getElementById(
+            `${data[i].id}Serving`
+          ).innerHTML = `Serving for ${recipe.servings} <ion-icon name="people-outline"></ion-icon>`;
+          document.getElementById(
+            `${data[i].id}Summary`
+          ).innerHTML = `${recipe.summary.slice(0, 450)}...`;
           for (let j = 0; j < recipe.extendedIngredients.length; j++) {
             const cardContent = document.getElementById(
               `${data[i].id}CardContent`
             );
             const extraIngredients = document.createElement("div");
             extraIngredients.innerHTML = `
-            <ion-item>
-                <ion-label>${recipe.extendedIngredients[j].name}</ion-label>
-            </ion-item>`;
+              <li>${recipe.extendedIngredients[j].name}</li>
+            `;
             cardContent.appendChild(extraIngredients);
           }
         });
