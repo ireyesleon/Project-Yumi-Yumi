@@ -1,17 +1,23 @@
 const API_KEY = "836d5ae3b9f844bdb1db505fe0936891";
-const LIST_RESULTS = 3;
-let ingredientListArray = [];
+const LIST_RESULTS = 4;
+let ingredientListArray = localStorage.getItem("ingredientListArray")
+  ? localStorage.getItem("ingredientListArray").split(",")
+  : [];
 const clearRecipeButton = document.getElementById("clearRecipe");
 const addIngredientButton = document.getElementById("addIngredient");
 const searchRecipeButton = document.getElementById("searchRecipe");
 const viewMoreButton = document.getElementsByClassName("viewMore");
 
-function AddIngredient() {
+function addIngredient() {
   const ingredientList = document.getElementById("ingredientList");
   const addIngredientText = document.getElementById("ingredient");
   if (addIngredientText.value) {
     if (!ingredientListArray.includes(addIngredientText.value)) {
       ingredientListArray.push(addIngredientText.value);
+      localStorage.setItem(
+        "ingredientListArray",
+        ingredientListArray.toString()
+      );
       const addItem = document.createElement("div");
       addItem.innerHTML = `
         <ion-item>
@@ -31,26 +37,27 @@ function AddIngredient() {
     }
   }
 }
-function ClearRecipe() {
+function clearRecipe() {
   ingredientListArray = [];
+  localStorage.setItem("ingredientListArray", "");
   document.getElementById("ingredientList").innerHTML = "";
   document.getElementById("addCards").innerHTML = "";
 }
-function DetailRecipe(id) {
+function detailRecipe(id) {
   const URL_RECIPE_ID = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=false`;
   return fetch(URL_RECIPE_ID).then((data) => data.json());
 }
-function SearchRecipe(ingredient) {
+function searchRecipe(ingredient) {
   const URL_RECIPE = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${ingredient}&number=${LIST_RESULTS}`;
   return fetch(URL_RECIPE).then((data) => data.json());
 }
-function SearchRecipeInformation(idName) {
+function searchRecipeInformation(idName) {
   localStorage.setItem(`recipeID`, idName);
 }
-function CreateCardRecipe() {
+function createCardRecipe() {
   const addCards = document.getElementById("addCards");
   if (ingredientListArray.length > 0) {
-    SearchRecipe(ingredientListArray.toString())
+    searchRecipe(ingredientListArray.toString())
       .then((data) => {
         for (let i = 0; i < data.length; i++) {
           const createCard = document.createElement("div");
@@ -67,13 +74,13 @@ function CreateCardRecipe() {
                 <p>Ingredients:</p>
                 <ul id="${data[i].id}CardContent"></ul>
                 <p id="${data[i].id}Summary"></p>
-                <ion-button fill="outline" slot="end"  onclick="SearchRecipeInformation(${data[i].id})">
+                <ion-button fill="outline" slot="end"  onclick="searchRecipeInformation(${data[i].id})">
                 <a href="display-page.html">View More
                 </ion-button>
                </ion-card-content>
             </ion-card>
         </ion-col>`;
-          DetailRecipe(data[i].id)
+          detailRecipe(data[i].id)
             .then((recipe) => {
               document.getElementById(
                 `${data[i].id}TimePreparation`
@@ -125,6 +132,24 @@ function CreateCardRecipe() {
     return alert.present();
   }
 }
-clearRecipeButton.addEventListener("click", ClearRecipe);
-addIngredientButton.addEventListener("click", AddIngredient);
-searchRecipeButton.addEventListener("click", CreateCardRecipe);
+function listIngredientRender() {
+  const localStorageIngredientListArray = localStorage
+    .getItem("ingredientListArray")
+    .split(",");
+  if (localStorageIngredientListArray.length > 0) {
+    for (let i = 0; i < localStorageIngredientListArray.length; i++) {
+      const addItem = document.createElement("div");
+      addItem.innerHTML = `
+        <ion-item>
+            <ion-label>${localStorageIngredientListArray[i]}</ion-label>
+        </ion-item>
+        `;
+      ingredientList.appendChild(addItem);
+    }
+  }
+}
+clearRecipeButton.addEventListener("click", clearRecipe);
+addIngredientButton.addEventListener("click", addIngredient);
+searchRecipeButton.addEventListener("click", createCardRecipe);
+
+listIngredientRender();
