@@ -1,4 +1,4 @@
-const API_KEY = "836d5ae3b9f844bdb1db505fe0936891";
+const API_KEY = "beb15423e7374eef83cf4843381c042e";
 const LIST_RESULTS = 4;
 let ingredientListArray = localStorage.getItem("ingredientListArray")
   ? localStorage.getItem("ingredientListArray").split(",")
@@ -35,6 +35,14 @@ function addIngredient() {
       document.body.appendChild(alert);
       return alert.present();
     }
+  } else {
+    addIngredientText.value = "";
+    const alert = document.createElement("ion-alert");
+    alert.header = "Error";
+    alert.message = "Please add an ingredient";
+    alert.buttons = ["OK"];
+    document.body.appendChild(alert);
+    return alert.present();
   }
 }
 function clearRecipe() {
